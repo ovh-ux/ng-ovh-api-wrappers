@@ -1,0 +1,12 @@
+{
+  "extends":"ovh/configs/es5-browser-test",
+  "env": {
+    "jasmine": true
+  },
+  "globals": {
+      "angular": true,
+      "_": true,
+      "module": true,
+      "inject": true
+  }
+}

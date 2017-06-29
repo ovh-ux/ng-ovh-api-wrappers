@@ -1,0 +1,53 @@
+{
+  "name": "ovh-angular-apiv7",
+  "version": "1.1.1",
+  "description": "The ovh-angular-apiv7 module is an angular component designed to configure Apiv7Endpoints with the same interface as a $resource yet allow for extended configuration by providing Apiv7Requests objects that can be modified with chained methods to define the parameters sent to APIv7.",
+  "keywords": [
+    "angular",
+    "ngResource",
+    "apiv7"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./dist/ovh-angular-apiv7.min.js",
+  "repository": "/ovh-ux/ovh-angular-apiv7",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.1.1",
+    "eslint-config-ovh": "^0.1.1",
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.7.0",
+    "grunt-complexity": "^0.3.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-eslint": "^20.0.0",
+    "grunt-jscs": "~2.8.0",
+    "grunt-karma": "~0.12.2",
+    "grunt-ng-annotate": "^2.0.2",
+    "grunt-ngdocs": "^0.2.9",
+    "husky": "^0.11.4",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "jit-grunt": "^0.10.0",
+    "jscs": "^3.0.3",
+    "jshint": "~2.9.1",
+    "jshint-stylish": "^2.1.0",
+    "karma": "~0.13.22",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "~2.1.7",
+    "time-grunt": "^1.3.0"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "dev": "grunt watch",
+    "lint": "eslint src/. --ext .js --quiet",
+    "precommit": "grunt test",
+    "prepush": "grunt test"
+  }
+}
