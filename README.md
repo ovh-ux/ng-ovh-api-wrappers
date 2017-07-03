@@ -41,7 +41,7 @@ methods to define the parameters sent to APIv7.
 angular.module("myModule", ["ovh-angular-apiv7"]);
 ```
 
-3. use it like $ressource (see Documentation for more)
+3. use it like $resource (see Documentation for more)
 
 # Documentation
 
