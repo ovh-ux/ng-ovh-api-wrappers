@@ -13,7 +13,7 @@ methods to define the parameters sent to APIv7.
 ## Requirements
 
   - [angular](https://angularjs.org/)
-  - [angular-resource](https://angularjs.org/)
+  - [angular-resource](https://docs.angularjs.org/api/ngResource)
   - [lodash](https://lodash.com/)
   - externally provided auth and token injection for OVH APIv6.
 
