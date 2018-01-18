@@ -17,12 +17,18 @@ angular
             /**
              * @method
              * @param {Object} options for ngResource
-             * @param {String} aggregationParam url parameter to replace with wildcard
+             * @param {String|Array} aggregationParam url parameter or list of url parameters to replace with wildcard
              * @returns {Function} a transformResponse handler
              */
             create: function (options, aggregationParam) {
                 var originalUrl = options.url;
                 var originalTransformResponse = options.transformResponse;
+
+                // be sure that aggregationParam is an Array
+                var aggregationParams = aggregationParam;
+                if (!angular.isArray(aggregationParams)) {
+                    aggregationParams = [aggregationParam];
+                }
 
                 return function (response, headers, httpCode) {
                     // no processing to do on errors.
@@ -31,7 +37,7 @@ angular
                     }
 
                     // construct a regex to extract key from response items' path
-                    var matchExpressionStr = originalUrl.replace(":" + aggregationParam, "([^/]+)").replace(/:[^\/]+/, "[^/]+");
+                    var matchExpressionStr = originalUrl.replace(new RegExp(":(" + aggregationParams.join("|") + ")", "g"), "([^/]+)").replace(/:[^\/]+/, "[^/]+");
                     var keyRegex = new RegExp(matchExpressionStr);
 
                     // process response

@@ -58,15 +58,22 @@ angular
         }
 
         function applyAggregation (v7Options, v7Params, action) {
-            // TODO --> verify if apiv7 can aggregation more than one parameter?
             if (v7Options.aggregation) {
-                v7Params.$aggreg = 1;
-                action.params[v7Options.aggregation] = undefined;
-                action.options.isArray = true;
-                action.options.transformResponse = apiv7AggregationResponseTransformer.create(action.options, v7Options.aggregation);
-                if (action.options.url) {
-                    action.options.url = action.options.url.replace(":" + v7Options.aggregation, "*");
+                var aggregParams = v7Options.aggregation;
+
+                // be sure that aggregation option is an Array. This should be the case if Apiv7Request.aggregate method is used
+                if (!angular.isArray(aggregParams)) {
+                    aggregParams = [aggregParams];
                 }
+                v7Params.$aggreg = 1;
+                action.options.isArray = true;
+                action.options.transformResponse = apiv7AggregationResponseTransformer.create(action.options, aggregParams);
+                aggregParams.forEach(function (aggregParam) {
+                    action.params[aggregParam] = undefined;
+                    if (action.options.url) {
+                        action.options.url = action.options.url.replace(":" + aggregParam, "*");
+                    }
+                });
             }
         }
 
