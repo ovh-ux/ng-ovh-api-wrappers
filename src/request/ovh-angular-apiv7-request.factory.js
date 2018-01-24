@@ -164,7 +164,14 @@ angular.module("ovh-angular-apiv7").factory("Apiv7Request", function ($resource,
          */
     Apiv7Request.prototype.aggregate = function (parameterToWildcard) {
         var clone = this.clone();
-        clone.v7Options.aggregation = angular.isString(parameterToWildcard) ? parameterToWildcard : undefined;
+        if (!angular.isArray(clone.v7Options.aggregation)) {
+            clone.v7Options.aggregation = [];
+        }
+
+        if (angular.isString(parameterToWildcard)) {
+            clone.v7Options.aggregation.push(parameterToWildcard);
+        }
+
         return clone;
     };
 

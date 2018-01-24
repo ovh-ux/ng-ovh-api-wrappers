@@ -30,12 +30,18 @@ angular
             /**
              * @method
              * @param {Object} options for ngResource
-             * @param {String} aggregationParam url parameter to replace with wildcard
+             * @param {String|Array} aggregationParam url parameter or list of url parameters to replace with wildcard
              * @returns {Function} a transformResponse handler
              */
             create: function (options, aggregationParam) {
                 var originalUrl = options.url;
                 var originalTransformResponse = options.transformResponse;
+
+                // be sure that aggregationParam is an Array
+                var aggregationParams = aggregationParam;
+                if (!angular.isArray(aggregationParams)) {
+                    aggregationParams = [aggregationParam];
+                }
 
                 return function (response, headers, httpCode) {
                     // no processing to do on errors.
@@ -44,7 +50,7 @@ angular
                     }
 
                     // construct a regex to extract key from response items' path
-                    var matchExpressionStr = originalUrl.replace(":" + aggregationParam, "([^/]+)").replace(/:[^\/]+/, "[^/]+");
+                    var matchExpressionStr = originalUrl.replace(new RegExp(":(" + aggregationParams.join("|") + ")", "g"), "([^/]+)").replace(/:[^\/]+/, "[^/]+");
                     var keyRegex = new RegExp(matchExpressionStr);
 
                     // process response
@@ -284,15 +290,22 @@ angular
         }
 
         function applyAggregation (v7Options, v7Params, action) {
-            // TODO --> verify if apiv7 can aggregation more than one parameter?
             if (v7Options.aggregation) {
-                v7Params.$aggreg = 1;
-                action.params[v7Options.aggregation] = undefined;
-                action.options.isArray = true;
-                action.options.transformResponse = apiv7AggregationResponseTransformer.create(action.options, v7Options.aggregation);
-                if (action.options.url) {
-                    action.options.url = action.options.url.replace(":" + v7Options.aggregation, "*");
+                var aggregParams = v7Options.aggregation;
+
+                // be sure that aggregation option is an Array. This should be the case if Apiv7Request.aggregate method is used
+                if (!angular.isArray(aggregParams)) {
+                    aggregParams = [aggregParams];
                 }
+                v7Params.$aggreg = 1;
+                action.options.isArray = true;
+                action.options.transformResponse = apiv7AggregationResponseTransformer.create(action.options, aggregParams);
+                aggregParams.forEach(function (aggregParam) {
+                    action.params[aggregParam] = undefined;
+                    if (action.options.url) {
+                        action.options.url = action.options.url.replace(":" + aggregParam, "*");
+                    }
+                });
             }
         }
 
@@ -497,7 +510,14 @@ angular.module("ovh-angular-apiv7").factory("Apiv7Request", ["$resource", "apiv7
          */
     Apiv7Request.prototype.aggregate = function (parameterToWildcard) {
         var clone = this.clone();
-        clone.v7Options.aggregation = angular.isString(parameterToWildcard) ? parameterToWildcard : undefined;
+        if (!angular.isArray(clone.v7Options.aggregation)) {
+            clone.v7Options.aggregation = [];
+        }
+
+        if (angular.isString(parameterToWildcard)) {
+            clone.v7Options.aggregation.push(parameterToWildcard);
+        }
+
         return clone;
     };
 

@@ -247,12 +247,19 @@ describe("Apiv7Request", function () {
             it("sets up wildcard parameter in v7 config", function () {
                 var req = orderRequest.aggregate("someParam");
 
-                expect(req.v7Options.aggregation).toEqual("someParam");
+                expect(req.v7Options.aggregation.length).toEqual(1);
+                expect(req.v7Options.aggregation[0]).toEqual("someParam");
+
+
+                req = req.aggregate("oneMoreParam");
+                expect(req.v7Options.aggregation.length).toEqual(2);
+                expect(req.v7Options.aggregation[0]).toEqual("someParam");
+                expect(req.v7Options.aggregation[1]).toEqual("oneMoreParam");
             });
 
             it("unsets the wildcard parameter in v7 config when passed a falsy param", function () {
                 var req = orderRequest.aggregate("someParam").aggregate(false);
-                expect(req.v7Options.aggregation).toBeUndefined();
+                expect(req.v7Options.aggregation.length).toEqual(1);
             });
 
             it("returns a new request object (immutability)", function () {
