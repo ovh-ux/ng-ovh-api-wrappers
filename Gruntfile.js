@@ -142,7 +142,7 @@ module.exports = function (grunt) {
     grunt.registerTask("watch", ["build", "delta"]);
 
     grunt.registerTask("test", function () {
-        grunt.task.run(["clean", "eslint", "complexity", "karma"]);
+        grunt.task.run(["eslint", "complexity", "karma"]);
     });
 
     grunt.registerTask("build", ["clean", "concat", "ngAnnotate", "uglify", "copy:dist", "ngdocs"]);
