@@ -3,10 +3,7 @@
 
 module.exports = function (grunt) {
     // Load grunt tasks automatically, when needed
-    require("jit-grunt")(grunt, {
-        "bump-only": "grunt-bump",
-        "bump-commit": "grunt-bump"
-    });
+    require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
     // Time how long tasks take. Can help when optimizing build times
     require("time-grunt")(grunt);

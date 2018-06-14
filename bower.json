@@ -1,6 +1,6 @@
 {
     "name": "ovh-angular-apiv7",
-    "version": "1.2.5",
+    "version": "1.2.7",
     "description": "The ovh-angular-apiv7 module is an angular component designed to configure Apiv7Endpoints with the same interface as a $resource yet allow for extended configuration by providing Apiv7Requests objects that can be modified with chained methods to define the parameters sent to APIv7.",
     "keywords": [
         "angular",
