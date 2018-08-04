@@ -233,7 +233,6 @@ angular.module("ovh-angular-apiv7").factory("Apiv7Request", function ($resource,
         return angular.copy(this);
     };
 
-    /* jshint latedef: false */
     function assertV7OptionsAllowed (v7Options, v7DisabledOperations) {
         _.forEach(v7Options, function (value, operationName) {
             assertUsageAllowed(operationName, v7DisabledOperations);
@@ -245,7 +244,6 @@ angular.module("ovh-angular-apiv7").factory("Apiv7Request", function ($resource,
             throw new Error("This action does not support the APIv7 '" + operationName + "' operation");
         }
     }
-    /* jshint latedef: true */
 
     return Apiv7Request;
 });
