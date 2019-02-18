@@ -16,7 +16,6 @@ module.exports = function (grunt) {
         distDir: "./dist",
         docDir: "./docs",
         pkg: grunt.file.readJSON("package.json"),
-        bower: grunt.file.readJSON("bower.json"),
 
         // Concatenation
         concat: {
@@ -130,9 +129,9 @@ module.exports = function (grunt) {
         bump: {
             options: {
                 commitFiles: ["-a"],
-                files: ["package.json", "bower.json"],
+                files: ["package.json"],
                 pushTo: "origin",
-                updateConfigs: ["pkg", "bower"]
+                updateConfigs: ["pkg"]
             }
         }
     });

@@ -53,8 +53,7 @@ angular.module("myModule", ["ovh-angular-apiv7"]);
 ```bash
     git clone https://github.com/ovh-ux/ovh-angular-apiv7.git
     cd ovh-angular-apiv7
-    npm install
-    bower install
+    yarn install
 ```
 
 You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy

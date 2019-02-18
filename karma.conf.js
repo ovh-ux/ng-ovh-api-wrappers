@@ -10,11 +10,11 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            "bower_components/jquery/dist/jquery.js",
-            "bower_components/lodash/lodash.js",
-            "bower_components/angular/angular.js",
-            "bower_components/angular-resource/angular-resource.js",
-            "bower_components/angular-mocks/angular-mocks.js",
+            "node_modules/jquery/dist/jquery.js",
+            "node_modules/lodash/index.js",
+            "node_modules/angular/angular.js",
+            "node_modules/angular-resource/angular-resource.js",
+            "node_modules/angular-mocks/angular-mocks.js",
             "src/ovh-angular-apiv7.module.js",
             "src/**/*.js"
         ],

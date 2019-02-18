@@ -11,8 +11,13 @@
   "author": "OVH SAS",
   "main": "./dist/ovh-angular-apiv7.min.js",
   "repository": "ovh-ux/ovh-angular-apiv7",
-  "dependencies": {},
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "lodash": "^3.10.1"
+  },
   "devDependencies": {
+    "angular-mocks": "~1.5.0",
     "eslint": "^4.1.1",
     "eslint-config-ovh": "^0.1.1",
     "grunt": "^1.0.1",
@@ -32,6 +37,7 @@
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "jit-grunt": "^0.10.0",
+    "jquery": "2.1.x",
     "karma": "~0.13.22",
     "karma-jasmine": "^0.3.8",
     "karma-phantomjs-launcher": "^1.0.0",
