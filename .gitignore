@@ -1,7 +1,2 @@
-.idea
-.tmp
-.DS_Store
-.work
+dist
 node_modules
-bower_components
-npm-debug.log
