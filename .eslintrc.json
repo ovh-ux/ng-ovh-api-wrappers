@@ -1,12 +1,12 @@
 {
-  "extends":"ovh/configs/es5-browser-test",
+  "extends": "airbnb-base",
+  "plugins": [
+    "markdown"
+  ],
   "env": {
-    "jasmine": true
+    "browser": true
   },
-  "globals": {
-      "angular": true,
-      "_": true,
-      "module": true,
-      "inject": true
+  "rules": {
+    "import/no-unresolved": 0
   }
 }
