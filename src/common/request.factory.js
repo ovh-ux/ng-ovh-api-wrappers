@@ -118,7 +118,7 @@ export default /* @ngInject */ function (
    * @returns {Apiv7Request} new instance
    * @see APIV7_FILTER_COMPARATOR
    */
-  Apiv7Request.prototype.setFilter = function (field, comparator, reference) {
+  Apiv7Request.prototype.setFilter = function (field, comparator, ...reference) {
     const clone = this.clone();
     if (!field) {
       delete clone.apiOptions.filters;
@@ -150,7 +150,7 @@ export default /* @ngInject */ function (
    * @returns {Apiv7Request} new instance
    * @see APIV7_FILTER_COMPARATOR
    */
-  Apiv7Request.prototype.addFilter = function (field, comparator, reference) {
+  Apiv7Request.prototype.addFilter = function (field, comparator, ...reference) {
     const clone = this.clone();
     clone.apiOptions.filters = clone.apiOptions.filters || [];
     clone.apiOptions.filters.push({
