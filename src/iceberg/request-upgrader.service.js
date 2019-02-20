@@ -74,24 +74,36 @@ export default class IcebergRequestUpgrader {
     return {};
   }
 
-  static buildHeaders(apiOptions) {
+  static buildCacheCleaning(cleanCache) {
+    if (cleanCache) {
+      return {
+        Pragma: 'no-cache',
+      };
+    }
+
+    return {};
+  }
+
+  static buildHeaders(apiOptions, cleanCache) {
     return {
       ...IcebergRequestUpgrader.buildExpand(apiOptions),
       ...IcebergRequestUpgrader.buildOffset(apiOptions),
       ...IcebergRequestUpgrader.buildLimit(apiOptions),
       ...IcebergRequestUpgrader.buildFilters(apiOptions),
       ...IcebergRequestUpgrader.buildSort(apiOptions),
+      ...IcebergRequestUpgrader.buildExpand(apiOptions),
+      ...IcebergRequestUpgrader.buildCacheCleaning(cleanCache),
     };
   }
 
-  static buildAction(params, actionOptions, apiOptions) {
+  static buildAction(params, actionOptions, apiOptions, cleanCache) {
     const action = {
       params: cloneDeep(params),
       options: cloneDeep(actionOptions),
     };
 
     merge(action.options, {
-      headers: IcebergRequestUpgrader.buildHeaders(apiOptions),
+      headers: IcebergRequestUpgrader.buildHeaders(apiOptions, cleanCache),
       serviceType: 'apiv6',
     });
     return action;
