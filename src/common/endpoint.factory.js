@@ -59,13 +59,13 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
       const { disabledOperations } = actionOpts;
       const actionOptions = omit(actionOpts, 'disabledOperations');
 
-      self[actionName] = function (v7Options) {
+      self[actionName] = function (apiOptions) {
         return new Apiv7Request(
           defaultUrl,
           defaultParams,
           actionOptions,
           options,
-          v7Options,
+          apiOptions,
           disabledOperations,
           serviceType,
         );
