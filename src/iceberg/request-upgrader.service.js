@@ -11,17 +11,56 @@
  * @private
  */
 import cloneDeep from 'lodash/cloneDeep';
+import isNull from 'lodash/isNull';
 import merge from 'lodash/merge';
 
-export default class {
-  static buildAction(params, actionOptions) {
+export default class IcebergRequestUpgrader {
+  static buildExpand({ expansion }) {
+    if (!isNull(expansion)) {
+      return {
+        'X-Pagination-Mode': expansion,
+      };
+    }
+
+    return {};
+  }
+
+  static buildOffset({ expansion, offset }) {
+    if (offset > 0 && expansion === 'CachedObjectList-Pages') {
+      return {
+        'X-Pagination-Number': offset,
+      };
+    }
+
+    return {};
+  }
+
+  static buildLimit({ limit }) {
+    if (limit > 0) {
+      return {
+        'X-Pagination-Size': limit,
+      };
+    }
+
+    return {};
+  }
+
+  static buildHeaders(apiOptions) {
+    return {
+      ...IcebergRequestUpgrader.buildExpand(apiOptions),
+      ...IcebergRequestUpgrader.buildOffset(apiOptions),
+      ...IcebergRequestUpgrader.buildLimit(apiOptions),
+    };
+  }
+
+  static buildAction(params, actionOptions, apiOptions) {
     const action = {
       params: cloneDeep(params),
       options: cloneDeep(actionOptions),
     };
-    const headers = {};
+
     merge(action.options, {
-      headers,
+      headers: IcebergRequestUpgrader.buildHeaders(apiOptions),
       serviceType: 'apiv6',
     });
     return action;
