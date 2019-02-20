@@ -17,9 +17,11 @@ import { APIV7_FILTER_COMPARATOR, APIV7_SORT_ORDER } from './constants';
 import { APIV7_ENDPOINT_DEFAULT_ACTIONS } from './common/endpoint.constants';
 import Apiv7EndpointFactory from './common/endpoint.factory';
 import Apiv7RequestFactory from './common/request.factory';
+import icebergService from './iceberg/service';
 import v7Service from './v7/service';
 import AggregationResponseTransformerService from './v7/aggregation-response-transformer.service';
 import Apiv7RequestUpgraderService from './v7/request-upgrader.service';
+import ApiIcebergRequestUpgraderService from './iceberg/request-upgrader.service';
 
 const moduleName = 'ngOvhApiv7';
 
@@ -33,7 +35,9 @@ angular
   .factory('Apiv7Endpoint', Apiv7EndpointFactory)
   .factory('Apiv7Request', Apiv7RequestFactory)
   .service('apiv7', v7Service)
+  .service('iceberg', icebergService)
   .service('apiv7AggregationResponseTransformer', AggregationResponseTransformerService)
   .service('apiv7RequestUpgrader', Apiv7RequestUpgraderService)
+  .service('apiIcebergRequestUpgrader', ApiIcebergRequestUpgraderService);
 
 export default moduleName;

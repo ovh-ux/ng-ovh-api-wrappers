@@ -31,10 +31,16 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
    * @param {Object} actions Declaration of custom actions.
    * @param {Object} [resourceOptions] Custom settings.
    */
-  function Apiv7Endpoint(defaultUrl, defaultParams, actions, resourceOptions) {
+  function Apiv7Endpoint(defaultUrl, defaultParams, actions, resourceOptions, serviceType = 'v7') {
     // Creates the $resource default actions as well
     const actionToBuild = merge({}, APIV7_ENDPOINT_DEFAULT_ACTIONS, actions);
-    this.createRequestBuilders(defaultUrl, defaultParams, actionToBuild, resourceOptions);
+    this.createRequestBuilders(
+      defaultUrl,
+      defaultParams,
+      actionToBuild,
+      resourceOptions,
+      serviceType,
+    );
   }
 
   /**
@@ -47,7 +53,7 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
    * @private
    */
   Apiv7Endpoint.prototype.createRequestBuilders = function (defaultUrl, defaultParams, actions,
-    options) {
+    options, serviceType) {
     const self = this;
     forOwn(actions, (actionOpts, actionName) => {
       const { disabledOperations } = actionOpts;
@@ -61,6 +67,7 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
           options,
           v7Options,
           disabledOperations,
+          serviceType,
         );
       };
     });
