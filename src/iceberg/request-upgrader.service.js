@@ -13,6 +13,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
+import isString from 'lodash/isString';
 import merge from 'lodash/merge';
 
 export default class IcebergRequestUpgrader {
@@ -30,6 +31,12 @@ export default class IcebergRequestUpgrader {
     if (offset > 0 && expansion === 'CachedObjectList-Pages') {
       return {
         'X-Pagination-Number': offset,
+      };
+    }
+
+    if (isString(offset) && expansion === 'CachedObjectList-Cursor') {
+      return {
+        'X-Pagination-Cursor': offset,
       };
     }
 
