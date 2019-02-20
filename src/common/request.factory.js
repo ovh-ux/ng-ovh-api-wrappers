@@ -28,16 +28,16 @@ export default /* @ngInject */ function (
    * @param {Object} defaultParams default parameter mapping
    * @param {Object} actionOptions actions configuration
    * @param {Object} [resourceOptions] $resource extra options
-   * @param {Object} [v7Options={}] alternative configuration by parameter
+   * @param {Object} [apiOptions={}] alternative configuration by parameter
    * @param {Array} [v7DisabledOperations] disabled operations, to warn developer on usage
    */
-  function Apiv7Request(defaultUrl, defaultParams, actionOptions, resourceOptions, v7Options,
+  function Apiv7Request(defaultUrl, defaultParams, actionOptions, resourceOptions, apiOptions,
     v7DisabledOperations, serviceType) {
     this.defaultUrl = defaultUrl;
     this.defaultParams = defaultParams;
     this.actionOptions = actionOptions;
     this.options = resourceOptions;
-    this.v7Options = v7Options || {};
+    this.apiOptions = apiOptions || {};
     this.v7DisabledOperations = v7DisabledOperations || [];
     this.serviceType = serviceType;
 
@@ -58,8 +58,8 @@ export default /* @ngInject */ function (
     }
   }
 
-  function assertV7OptionsAllowed(v7Options, v7DisabledOperations) {
-    forEach(v7Options, (value, operationName) => {
+  function assertV7OptionsAllowed(apiOptions, v7DisabledOperations) {
+    forEach(apiOptions, (value, operationName) => {
       assertUsageAllowed(operationName, v7DisabledOperations);
     });
   }
@@ -75,7 +75,7 @@ export default /* @ngInject */ function (
    */
   Apiv7Request.prototype.expand = function (toggle) {
     const clone = this.clone();
-    clone.v7Options.expansion = angular.isDefined(toggle) ? toggle : true;
+    clone.apiOptions.expansion = angular.isDefined(toggle) ? toggle : true;
     return clone;
   };
 
@@ -94,11 +94,11 @@ export default /* @ngInject */ function (
     const clone = this.clone();
     const order = rawOrder || 'ASC';
     if (!field || field === '') {
-      clone.v7Options.sort = undefined;
+      clone.apiOptions.sort = undefined;
       return clone;
     }
 
-    clone.v7Options.sort = {
+    clone.apiOptions.sort = {
       field,
       order: order.toUpperCase(),
     };
@@ -121,11 +121,11 @@ export default /* @ngInject */ function (
   Apiv7Request.prototype.setFilter = function (field, comparator, reference) {
     const clone = this.clone();
     if (!field) {
-      delete clone.v7Options.filters;
+      delete clone.apiOptions.filters;
       return clone;
     }
 
-    clone.v7Options.filters = [
+    clone.apiOptions.filters = [
       {
         field,
         comparator,
@@ -152,8 +152,8 @@ export default /* @ngInject */ function (
    */
   Apiv7Request.prototype.addFilter = function (field, comparator, reference) {
     const clone = this.clone();
-    clone.v7Options.filters = clone.v7Options.filters || [];
-    clone.v7Options.filters.push({
+    clone.apiOptions.filters = clone.apiOptions.filters || [];
+    clone.apiOptions.filters.push({
       field,
       comparator,
       reference,
@@ -175,7 +175,7 @@ export default /* @ngInject */ function (
   Apiv7Request.prototype.batch = function (parameter, values, separator) {
     // TODO - write unit test
     const clone = this.clone();
-    clone.v7Options.batch = {
+    clone.apiOptions.batch = {
       parameter,
       values,
       separator: separator || ',',
@@ -194,12 +194,12 @@ export default /* @ngInject */ function (
    */
   Apiv7Request.prototype.aggregate = function (parameterToWildcard) {
     const clone = this.clone();
-    if (!angular.isArray(clone.v7Options.aggregation)) {
-      clone.v7Options.aggregation = [];
+    if (!angular.isArray(clone.apiOptions.aggregation)) {
+      clone.apiOptions.aggregation = [];
     }
 
     if (angular.isString(parameterToWildcard)) {
-      clone.v7Options.aggregation.push(parameterToWildcard);
+      clone.apiOptions.aggregation.push(parameterToWildcard);
     }
 
     return clone;
@@ -216,7 +216,7 @@ export default /* @ngInject */ function (
    */
   Apiv7Request.prototype.limit = function (limit) {
     const clone = this.clone();
-    clone.v7Options.limit = limit;
+    clone.apiOptions.limit = limit;
     return clone;
   };
 
@@ -231,7 +231,7 @@ export default /* @ngInject */ function (
    */
   Apiv7Request.prototype.offset = function (offset) {
     const clone = this.clone();
-    clone.v7Options.offset = offset;
+    clone.apiOptions.offset = offset;
     return clone;
   };
 
@@ -248,14 +248,14 @@ export default /* @ngInject */ function (
    */
   Apiv7Request.prototype.execute = function (params) {
     // TODO - disable check in prod
-    assertV7OptionsAllowed(this.v7Options, this.v7DisabledOperations);
+    assertV7OptionsAllowed(this.apiOptions, this.v7DisabledOperations);
     const urlParams = angular.extend({}, params);
     const requestManager = this.requestManagers[`api${this.serviceType}RequestUpgrader`];
     const action = get(
       requestManager,
       'constructor.buildAction',
       requestManager.buildAction,
-    )(urlParams, this.actionOptions, this.v7Options);
+    )(urlParams, this.actionOptions, this.apiOptions);
     const res = $resource(
       this.defaultUrl,
       this.defaultParams,
