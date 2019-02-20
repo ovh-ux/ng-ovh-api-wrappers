@@ -14,12 +14,12 @@
 import angular from 'angular';
 import 'angular-resource';
 import { APIV7_FILTER_COMPARATOR, APIV7_SORT_ORDER } from './constants';
-import { APIV7_ENDPOINT_DEFAULT_ACTIONS } from './endpoint.constants';
-import Apiv7EndpointFactory from './endpoint.factory';
-import Apiv7RequestFactory from './request.factory';
-import service from './service';
-import AggregationResponseTransformerService from './aggregation-response-transformer.service';
-import Apiv7RequestUpgraderService from './request-upgrader.service';
+import { APIV7_ENDPOINT_DEFAULT_ACTIONS } from './common/endpoint.constants';
+import Apiv7EndpointFactory from './common/endpoint.factory';
+import Apiv7RequestFactory from './common/request.factory';
+import v7Service from './v7/service';
+import AggregationResponseTransformerService from './v7/aggregation-response-transformer.service';
+import Apiv7RequestUpgraderService from './v7/request-upgrader.service';
 
 const moduleName = 'ngOvhApiv7';
 
@@ -32,8 +32,8 @@ angular
   .constant('APIV7_ENDPOINT_DEFAULT_ACTIONS', APIV7_ENDPOINT_DEFAULT_ACTIONS)
   .factory('Apiv7Endpoint', Apiv7EndpointFactory)
   .factory('Apiv7Request', Apiv7RequestFactory)
-  .service('apiv7', service)
+  .service('apiv7', v7Service)
   .service('apiv7AggregationResponseTransformer', AggregationResponseTransformerService)
-  .service('apiv7RequestUpgrader', Apiv7RequestUpgraderService);
+  .service('apiv7RequestUpgrader', Apiv7RequestUpgraderService)
 
 export default moduleName;
