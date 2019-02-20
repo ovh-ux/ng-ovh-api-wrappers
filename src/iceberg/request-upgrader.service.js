@@ -11,6 +11,7 @@
  * @private
  */
 import cloneDeep from 'lodash/cloneDeep';
+import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import merge from 'lodash/merge';
 
@@ -45,11 +46,34 @@ export default class IcebergRequestUpgrader {
     return {};
   }
 
+  static buildFilters({ filters }) {
+    if (isArray(filters)) {
+      return {
+        'X-Pagination-Filter': filters.map(({ field, comparator, reference }) => `${field}:${comparator}=${reference.join(',')}`).join('&'),
+      };
+    }
+
+    return {};
+  }
+
+  static buildSort({ sort }) {
+    if (sort) {
+      return {
+        'X-Pagination-Sort': sort.field,
+        'X-Pagination-Sort-Order': sort.order,
+      };
+    }
+
+    return {};
+  }
+
   static buildHeaders(apiOptions) {
     return {
       ...IcebergRequestUpgrader.buildExpand(apiOptions),
       ...IcebergRequestUpgrader.buildOffset(apiOptions),
       ...IcebergRequestUpgrader.buildLimit(apiOptions),
+      ...IcebergRequestUpgrader.buildFilters(apiOptions),
+      ...IcebergRequestUpgrader.buildSort(apiOptions),
     };
   }
 
