@@ -246,7 +246,7 @@ export default /* @ngInject */ function (
    * @returns {$resource} a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource} instance
    * @see ngResource
    */
-  Apiv7Request.prototype.execute = function (params) {
+  Apiv7Request.prototype.execute = function (params, cleanCache = false) {
     // TODO - disable check in prod
     assertV7OptionsAllowed(this.apiOptions, this.v7DisabledOperations);
     const urlParams = angular.extend({}, params);
@@ -255,7 +255,7 @@ export default /* @ngInject */ function (
       requestManager,
       'constructor.buildAction',
       requestManager.buildAction,
-    )(urlParams, this.actionOptions, this.apiOptions);
+    )(urlParams, this.actionOptions, this.apiOptions, cleanCache);
     const res = $resource(
       this.defaultUrl,
       this.defaultParams,
