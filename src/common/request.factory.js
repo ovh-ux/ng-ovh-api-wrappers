@@ -1,7 +1,12 @@
 import angular from 'angular';
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 
-export default /* @ngInject */ function ($resource, apiv7RequestUpgrader) {
+export default /* @ngInject */ function (
+  $resource,
+  apiIcebergRequestUpgrader,
+  apiv7RequestUpgrader,
+) {
   /**
    * @ngdoc service
    * @name ng-ovh-apiv7.Apiv7Request
@@ -27,13 +32,19 @@ export default /* @ngInject */ function ($resource, apiv7RequestUpgrader) {
    * @param {Array} [v7DisabledOperations] disabled operations, to warn developer on usage
    */
   function Apiv7Request(defaultUrl, defaultParams, actionOptions, resourceOptions, v7Options,
-    v7DisabledOperations) {
+    v7DisabledOperations, serviceType) {
     this.defaultUrl = defaultUrl;
     this.defaultParams = defaultParams;
     this.actionOptions = actionOptions;
     this.options = resourceOptions;
     this.v7Options = v7Options || {};
     this.v7DisabledOperations = v7DisabledOperations || [];
+    this.serviceType = serviceType;
+
+    this.requestManagers = {
+      apiv7RequestUpgrader,
+      apiIcebergRequestUpgrader,
+    };
 
     if (angular.isUndefined(actionOptions.url)) {
       this.actionOptions.url = this.defaultUrl;
@@ -239,7 +250,12 @@ export default /* @ngInject */ function ($resource, apiv7RequestUpgrader) {
     // TODO - disable check in prod
     assertV7OptionsAllowed(this.v7Options, this.v7DisabledOperations);
     const urlParams = angular.extend({}, params);
-    const action = apiv7RequestUpgrader.buildAction(urlParams, this.actionOptions, this.v7Options);
+    const requestManager = this.requestManagers[`api${this.serviceType}RequestUpgrader`];
+    const action = get(
+      requestManager,
+      'constructor.buildAction',
+      requestManager.buildAction,
+    )(urlParams, this.actionOptions, this.v7Options);
     const res = $resource(
       this.defaultUrl,
       this.defaultParams,
