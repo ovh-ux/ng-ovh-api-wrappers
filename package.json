@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/ng-ovh-apiv7",
   "version": "2.0.0",
-  "description": "AngularJS component designed to configure Apiv7Endpoints with the same interface as a $resource yet allow for extended configuration by providing Apiv7Requests objects that can be modified with chained methods to define the parameters sent to APIv7.",
+  "description": "AngularJS component designed to configure ApiEndpoints with the same interface as a $resource yet allow for extended configuration by providing ApiRequests objects that can be modified with chained methods to define the parameters sent to APIv7 or Iceberg.",
   "keywords": [
     "angularjs",
     "component",

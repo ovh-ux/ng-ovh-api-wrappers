@@ -1,6 +1,6 @@
 # ng-ovh-apiv7
 
-> AngularJS component designed to configure Apiv7Endpoints with the same interface as a $resource yet allow for extended configuration by providing Apiv7Requests objects that can be modified with chained methods to define the parameters sent to APIv7.
+> AngularJS component designed to configure Api Endpoints with the same interface as a $resource yet allow for extended configuration by providing ApiRequests objects that can be modified with chained methods to define the parameters sent to APIv7 or the headers to Iceberg.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-apiv7)](https://npmjs.com/package/@ovh-ux/ng-ovh-apiv7) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-apiv7)](https://npmjs.com/package/@ovh-ux/ng-ovh-apiv7?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-apiv7)](https://npmjs.com/package/@ovh-ux/ng-ovh-apiv7?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
