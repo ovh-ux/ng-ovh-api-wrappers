@@ -14,7 +14,7 @@
 import angular from 'angular';
 import 'angular-resource';
 import { APIV7_FILTER_COMPARATOR, APIV7_SORT_ORDER } from './constants';
-import { APIV7_ENDPOINT_DEFAULT_ACTIONS } from './common/endpoint.constants';
+import { API_ENDPOINT_DEFAULT_ACTIONS } from './common/endpoint.constants';
 import ApiEndpointFactory from './common/endpoint.factory';
 import ApiRequestFactory from './common/request.factory';
 import icebergService from './iceberg/service';
@@ -31,7 +31,7 @@ angular
   ])
   .constant('APIV7_FILTER_COMPARATOR', APIV7_FILTER_COMPARATOR)
   .constant('APIV7_SORT_ORDER', APIV7_SORT_ORDER)
-  .constant('APIV7_ENDPOINT_DEFAULT_ACTIONS', APIV7_ENDPOINT_DEFAULT_ACTIONS)
+  .constant('API_ENDPOINT_DEFAULT_ACTIONS', API_ENDPOINT_DEFAULT_ACTIONS)
   .factory('ApiEndpoint', ApiEndpointFactory)
   .factory('ApiRequest', ApiRequestFactory)
   .service('apiv7', v7Service)

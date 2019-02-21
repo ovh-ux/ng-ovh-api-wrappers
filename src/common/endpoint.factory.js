@@ -2,7 +2,7 @@ import forOwn from 'lodash/forOwn';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 
-export default /* @ngInject */ function (ApiRequest, APIV7_ENDPOINT_DEFAULT_ACTIONS) {
+export default /* @ngInject */ function (ApiRequest, API_ENDPOINT_DEFAULT_ACTIONS) {
   /**
    * @ngdoc service
    * @name ng-ovh-apiv7.ApiEndpoint
@@ -33,7 +33,7 @@ export default /* @ngInject */ function (ApiRequest, APIV7_ENDPOINT_DEFAULT_ACTI
    */
   function ApiEndpoint(defaultUrl, defaultParams, actions, resourceOptions, serviceType = 'v7') {
     // Creates the $resource default actions as well
-    const actionToBuild = merge({}, APIV7_ENDPOINT_DEFAULT_ACTIONS, actions);
+    const actionToBuild = merge({}, API_ENDPOINT_DEFAULT_ACTIONS, actions);
     this.createRequestBuilders(
       defaultUrl,
       defaultParams,

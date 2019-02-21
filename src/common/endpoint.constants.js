@@ -2,7 +2,7 @@
  *  @type {Object}
  *  @description $resource default actions.
  */
-export const APIV7_ENDPOINT_DEFAULT_ACTIONS = {
+export const API_ENDPOINT_DEFAULT_ACTIONS = {
   query: {
     method: 'GET',
     isArray: true,
@@ -23,5 +23,5 @@ export const APIV7_ENDPOINT_DEFAULT_ACTIONS = {
 
 
 export default {
-  APIV7_ENDPOINT_DEFAULT_ACTIONS,
+  API_ENDPOINT_DEFAULT_ACTIONS,
 };
