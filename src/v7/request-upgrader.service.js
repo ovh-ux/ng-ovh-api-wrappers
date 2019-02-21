@@ -5,9 +5,9 @@
  * # apiv7RequestUpgrader
  *
  * This service's responsibility is to apply the correct querystring or headers
- * to implement the Apiv7Request config.
+ * to implement the ApiRequest config.
  *
- * @see Apiv7Request
+ * @see ApiRequest
  * @private
  */
 import angular from 'angular';
@@ -62,7 +62,7 @@ export default /* @ngInject */ function (apiv7AggregationResponseTransformer) {
       let aggregParams = apiOptions.aggregation;
 
       // be sure that aggregation option is an Array.
-      // This should be the case if Apiv7Request.aggregate method is used
+      // This should be the case if ApiRequest.aggregate method is used
       if (!angular.isArray(aggregParams)) {
         aggregParams = [aggregParams];
       }

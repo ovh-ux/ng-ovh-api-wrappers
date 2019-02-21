@@ -7,7 +7,7 @@
  * This service's responsibility is to apply the correct headers
  * to implement the Iceberg Request config.
  *
- * @see Apiv7Request
+ * @see ApiRequest
  * @private
  */
 import cloneDeep from 'lodash/cloneDeep';

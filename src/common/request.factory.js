@@ -9,17 +9,17 @@ export default /* @ngInject */ function (
 ) {
   /**
    * @ngdoc service
-   * @name ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest
    * @description
-   * # Apiv7Request
+   * # ApiRequest
    *
    * This object is normally created by invoking the methods of an
    * {@link ng-ovh-apiv7.ApiEndpoint}.
-   * Each Apiv7Request represents a request configuration that can be customised by
+   * Each ApiRequest represents a request configuration that can be customised by
    * method chaining to implement various APIv7 options.
    *
-   * When executed, an Apiv7Request returns a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource}
-   * instance. The Apiv7Request object can be executed several times and returns a distinct
+   * When executed, an ApiRequest returns a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource}
+   * instance. The ApiRequest object can be executed several times and returns a distinct
    * $resource instance
    * each time.
    *
@@ -31,7 +31,7 @@ export default /* @ngInject */ function (
    * @param {Object} [apiOptions={}] alternative configuration by parameter
    * @param {Array} [v7DisabledOperations] disabled operations, to warn developer on usage
    */
-  function Apiv7Request(defaultUrl, defaultParams, actionOptions, resourceOptions, apiOptions,
+  function ApiRequest(defaultUrl, defaultParams, actionOptions, resourceOptions, apiOptions,
     v7DisabledOperations, serviceType) {
     this.defaultUrl = defaultUrl;
     this.defaultParams = defaultParams;
@@ -66,14 +66,14 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#expand
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#expand
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Expand a list by returning the value of the objects instead of their ids.
    * @param {Boolean} [toggle=true] Enables expansion (defaults to true)
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    */
-  Apiv7Request.prototype.expand = function (toggle) {
+  ApiRequest.prototype.expand = function (toggle) {
     const clone = this.clone();
     clone.apiOptions.expansion = angular.isDefined(toggle) ? toggle : true;
     return clone;
@@ -81,16 +81,16 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#sort
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#sort
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Sort results by any sortable field and order (ASC or DESC);
    *  unsets existing sort if field is unset.
    * @param {String} field the property to sort on
    * @param {String} [order="ASC"] the order of sort (ASC|DESC)
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    */
-  Apiv7Request.prototype.sort = function (field, rawOrder) {
+  ApiRequest.prototype.sort = function (field, rawOrder) {
     const clone = this.clone();
     const order = rawOrder || 'ASC';
     if (!field || field === '') {
@@ -107,18 +107,18 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#setFilter
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#setFilter
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Set a filter on a field to compare it with a reference;
    *  unsets existing filters if field is unset, false or empty string.
    * @param {String} field property to filter on
    * @param {String} comparator the operator used to compare the field with reference
    * @param {String|Number|Array} reference value to compare with
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    * @see APIV7_FILTER_COMPARATOR
    */
-  Apiv7Request.prototype.setFilter = function (field, comparator, ...reference) {
+  ApiRequest.prototype.setFilter = function (field, comparator, ...reference) {
     const clone = this.clone();
     if (!field) {
       delete clone.apiOptions.filters;
@@ -135,22 +135,22 @@ export default /* @ngInject */ function (
     return clone;
   };
 
-  Apiv7Request.prototype.filter = Apiv7Request.prototype.setFilter;
+  ApiRequest.prototype.filter = ApiRequest.prototype.setFilter;
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#addFilter
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#addFilter
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Add a filter on a field to compare it with a reference.
    * @param {String} field property to filter on
    * @param {String} comparator the operator used to compare the field with reference.
    * See {@link APIV7_FILTER_COMPARATOR available comparators}
    * @param {String|Number|Array} reference value to compare with
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    * @see APIV7_FILTER_COMPARATOR
    */
-  Apiv7Request.prototype.addFilter = function (field, comparator, ...reference) {
+  ApiRequest.prototype.addFilter = function (field, comparator, ...reference) {
     const clone = this.clone();
     clone.apiOptions.filters = clone.apiOptions.filters || [];
     clone.apiOptions.filters.push({
@@ -163,16 +163,16 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#batch
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#batch
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Retrieves a list of object by batching several parameters in the same request.
    * @param {String} parameter parameter to batch for multiple ids.
    * @param {Array} values ids to retrieve
    * @param {String} [separator=","] separator used to join id list.
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    */
-  Apiv7Request.prototype.batch = function (parameter, values, separator) {
+  ApiRequest.prototype.batch = function (parameter, values, separator) {
     // TODO - write unit test
     const clone = this.clone();
     clone.apiOptions.batch = {
@@ -185,14 +185,14 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#aggregate
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#aggregate
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Aggregation using a wildcard parameter in the url. Disables aggregation if parameter is falsy.
    * @param {String} parameterToWildcard parameter on which to aggregate with wildcard
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    */
-  Apiv7Request.prototype.aggregate = function (parameterToWildcard) {
+  ApiRequest.prototype.aggregate = function (parameterToWildcard) {
     const clone = this.clone();
     if (!angular.isArray(clone.apiOptions.aggregation)) {
       clone.apiOptions.aggregation = [];
@@ -207,14 +207,14 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#limit
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#limit
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Limit the amount of items returned in a list or aggregated result
    * @param {Number} limit maximum number of items to retrieve
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    */
-  Apiv7Request.prototype.limit = function (limit) {
+  ApiRequest.prototype.limit = function (limit) {
     const clone = this.clone();
     clone.apiOptions.limit = limit;
     return clone;
@@ -222,14 +222,14 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#offset
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#offset
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Start enumeration of objects returned in a list result at this offset
    * @param {Number} offset skip ahead this number of items before retrieving
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    */
-  Apiv7Request.prototype.offset = function (offset) {
+  ApiRequest.prototype.offset = function (offset) {
     const clone = this.clone();
     clone.apiOptions.offset = offset;
     return clone;
@@ -237,8 +237,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.Apiv7Request#execute
-   * @methodOf ng-ovh-apiv7.Apiv7Request
+   * @name ng-ovh-apiv7.ApiRequest#execute
+   * @methodOf ng-ovh-apiv7.ApiRequest
    * @description
    *  Applies all configuration and return a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource}
    *  instance with the pending query results.
@@ -246,7 +246,7 @@ export default /* @ngInject */ function (
    * @returns {$resource} a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource} instance
    * @see ngResource
    */
-  Apiv7Request.prototype.execute = function (params, cleanCache = false) {
+  ApiRequest.prototype.execute = function (params, cleanCache = false) {
     // TODO - disable check in prod
     assertV7OptionsAllowed(this.apiOptions, this.v7DisabledOperations);
     const urlParams = angular.extend({}, params);
@@ -266,12 +266,12 @@ export default /* @ngInject */ function (
   };
 
   /**
-   * @returns {Apiv7Request} new instance
+   * @returns {ApiRequest} new instance
    * @private
    */
-  Apiv7Request.prototype.clone = function () {
+  ApiRequest.prototype.clone = function () {
     return angular.copy(this);
   };
 
-  return Apiv7Request;
+  return ApiRequest;
 }
