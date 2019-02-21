@@ -5,9 +5,9 @@ import omit from 'lodash/omit';
 export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_ACTIONS) {
   /**
    * @ngdoc service
-   * @name ng-ovh-apiv7.Apiv7Endpoint
+   * @name ng-ovh-apiv7.ApiEndpoint
    * @description
-   * # Apiv7Endpoint
+   * # ApiEndpoint
    *
    * Creates ngResource endpoints that provides facilities to easily
    * leverage APIv7 functionality.
@@ -19,7 +19,7 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
    *
    * The constructor accepts all the standard options of
    * {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource} as well as
-   * extra action options specific to Apiv7Endpoint behaviours.
+   * extra action options specific to ApiEndpoint behaviours.
    **
    * Extra action options:
    * - disabledOperations: to document and warn developers about Apiv7 operations
@@ -31,7 +31,7 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
    * @param {Object} actions Declaration of custom actions.
    * @param {Object} [resourceOptions] Custom settings.
    */
-  function Apiv7Endpoint(defaultUrl, defaultParams, actions, resourceOptions, serviceType = 'v7') {
+  function ApiEndpoint(defaultUrl, defaultParams, actions, resourceOptions, serviceType = 'v7') {
     // Creates the $resource default actions as well
     const actionToBuild = merge({}, APIV7_ENDPOINT_DEFAULT_ACTIONS, actions);
     this.createRequestBuilders(
@@ -52,7 +52,7 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
    * @param {Object} [options]
    * @private
    */
-  Apiv7Endpoint.prototype.createRequestBuilders = function (defaultUrl, defaultParams, actions,
+  ApiEndpoint.prototype.createRequestBuilders = function (defaultUrl, defaultParams, actions,
     options, serviceType) {
     const self = this;
     forOwn(actions, (actionOpts, actionName) => {
@@ -73,5 +73,5 @@ export default /* @ngInject */ function (Apiv7Request, APIV7_ENDPOINT_DEFAULT_AC
     });
   };
 
-  return Apiv7Endpoint;
+  return ApiEndpoint;
 }
