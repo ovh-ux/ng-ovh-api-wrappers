@@ -14,7 +14,7 @@ export default /* @ngInject */ function (
    * # Apiv7Request
    *
    * This object is normally created by invoking the methods of an
-   * {@link ng-ovh-apiv7.Apiv7Endpoint}.
+   * {@link ng-ovh-apiv7.ApiEndpoint}.
    * Each Apiv7Request represents a request configuration that can be customised by
    * method chaining to implement various APIv7 options.
    *

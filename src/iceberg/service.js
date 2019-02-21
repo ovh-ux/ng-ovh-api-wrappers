@@ -1,15 +1,15 @@
-export default /* @ngInject */ function (Apiv7Endpoint) {
+export default /* @ngInject */ function (ApiEndpoint) {
   /**
    * @ngdoc service
    * @name ng-ovh-apiv7.iceberg
    * @description
    * # iceberg
    *
-   * Provides sugar to creates a Apiv7Endpoint without the new operator.
+   * Provides sugar to creates a ApiEndpoint without the new operator.
    *
-   * @see Apiv7Endpoint
+   * @see ApiEndpoint
    */
   return function iceberg(defaultUrl, defaultParams, actions, resourceOptions) {
-    return new Apiv7Endpoint(defaultUrl, defaultParams, actions, resourceOptions, 'Iceberg');
+    return new ApiEndpoint(defaultUrl, defaultParams, actions, resourceOptions, 'Iceberg');
   };
 }
