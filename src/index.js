@@ -1,14 +1,14 @@
 /**
  * @ngdoc overview
- * @name ng-ovh-apiv7
+ * @name ng-ovh-api-wrappers
  * @description
- * # ng-ovh-apiv7
+ * # ng-ovh-api-wrappers
  *
- * The ng-ovh-apiv7 module is an angular component designed to configure
- * {@link ng-ovh-apiv7.ApiEndpoint Apiv7Endpoints}
+ * The ng-ovh-api-wrappers module is an angular component designed to configure
+ * {@link ng-ovh-api-wrappers.ApiEndpoint Apiv7Endpoints}
  * with the same interface as a $resource yet allow for extended configuration by providing
- * {@link ng-ovh-apiv7.ApiRequest Apiv7Requests} objects that can be modified with chained methods
- * to define the parameters sent to APIv7.
+ * {@link ng-ovh-api-wrappers.ApiRequest Apiv7Requests}
+ *  objects that can be modified with chained methods to define the parameters sent to APIv7.
  */
 
 import angular from 'angular';
@@ -22,7 +22,7 @@ import AggregationResponseTransformerService from './v7/aggregation-response-tra
 import Apiv7RequestUpgraderService from './v7/request-upgrader.service';
 import ApiIcebergRequestUpgraderService from './iceberg/request-upgrader.service';
 
-const moduleName = 'ngOvhApiv7';
+const moduleName = 'ngOvhApiWrappers';
 
 angular
   .module(moduleName, [

@@ -1,4 +1,4 @@
-# Contributing to ng-ovh-apiv7
+# Contributing to ng-ovh-api-wrappers
 
 This project accepts contributions. In order to contribute, you should
 pay attention to a few things:
@@ -17,8 +17,8 @@ The contributions should be submitted through GitHub Pull Requests.
 
 # Licensing for new files
 
-ng-ovh-apiv7 is licensed under a BSD-3-Clause license. Anything
-contributed to ng-ovh-apiv7 must be released under this license.
+ng-ovh-api-wrappers is licensed under a BSD-3-Clause license. Anything
+contributed to ng-ovh-api-wrappers must be released under this license.
 
 When introducing a new file into the project, please make sure it has a
 copyright header making clear under which license it's being released.
