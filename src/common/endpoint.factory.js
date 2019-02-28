@@ -5,7 +5,7 @@ import omit from 'lodash/omit';
 export default /* @ngInject */ function (ApiRequest, API_ENDPOINT_DEFAULT_ACTIONS) {
   /**
    * @ngdoc service
-   * @name ng-ovh-apiv7.ApiEndpoint
+   * @name ng-ovh-api-wrappers.ApiEndpoint
    * @description
    * # ApiEndpoint
    *
@@ -13,7 +13,7 @@ export default /* @ngInject */ function (ApiRequest, API_ENDPOINT_DEFAULT_ACTION
    * leverage APIv7 functionality.
    *
    * For each action, ($resource defaults + custom actions specified in), a method is
-   * created on the endpoint object. These methods create {@link ng-ovh-apiv7.ApiRequest}
+   * created on the endpoint object. These methods create {@link ng-ovh-api-wrappers.ApiRequest}
    * objects which implements APIv7 operations (.sort, filter, ...) and returns a $resource instance
    * on execute().
    *

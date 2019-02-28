@@ -1,7 +1,7 @@
 export default /* @ngInject */ function (ApiEndpoint) {
   /**
    * @ngdoc service
-   * @name ng-ovh-apiv7.apiv7
+   * @name ng-ovh-api-wrappers.apiv7
    * @description
    * # apiv7
    *

@@ -1,7 +1,7 @@
 export default /* @ngInject */ function (ApiEndpoint) {
   /**
    * @ngdoc service
-   * @name ng-ovh-apiv7.iceberg
+   * @name ng-ovh-api-wrappers.iceberg
    * @description
    * # iceberg
    *

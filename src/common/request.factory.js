@@ -9,12 +9,12 @@ export default /* @ngInject */ function (
 ) {
   /**
    * @ngdoc service
-   * @name ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest
    * @description
    * # ApiRequest
    *
    * This object is normally created by invoking the methods of an
-   * {@link ng-ovh-apiv7.ApiEndpoint}.
+   * {@link ng-ovh-api-wrappers.ApiEndpoint}.
    * Each ApiRequest represents a request configuration that can be customised by
    * method chaining to implement various APIv7 options.
    *
@@ -66,8 +66,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#expand
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#expand
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Expand a list by returning the value of the objects instead of their ids.
    * @param {Boolean} [toggle=true] Enables expansion (defaults to true)
@@ -81,8 +81,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#sort
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#sort
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Sort results by any sortable field and order (ASC or DESC);
    *  unsets existing sort if field is unset.
@@ -107,8 +107,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#setFilter
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#setFilter
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Set a filter on a field to compare it with a reference;
    *  unsets existing filters if field is unset, false or empty string.
@@ -139,8 +139,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#addFilter
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#addFilter
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Add a filter on a field to compare it with a reference.
    * @param {String} field property to filter on
@@ -163,8 +163,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#batch
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#batch
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Retrieves a list of object by batching several parameters in the same request.
    * @param {String} parameter parameter to batch for multiple ids.
@@ -185,8 +185,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#aggregate
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#aggregate
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Aggregation using a wildcard parameter in the url. Disables aggregation if parameter is falsy.
    * @param {String} parameterToWildcard parameter on which to aggregate with wildcard
@@ -207,8 +207,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#limit
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#limit
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Limit the amount of items returned in a list or aggregated result
    * @param {Number} limit maximum number of items to retrieve
@@ -222,8 +222,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#offset
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#offset
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Start enumeration of objects returned in a list result at this offset
    * @param {Number} offset skip ahead this number of items before retrieving
@@ -237,8 +237,8 @@ export default /* @ngInject */ function (
 
   /**
    * @ngdoc method
-   * @name ng-ovh-apiv7.ApiRequest#execute
-   * @methodOf ng-ovh-apiv7.ApiRequest
+   * @name ng-ovh-api-wrappers.ApiRequest#execute
+   * @methodOf ng-ovh-api-wrappers.ApiRequest
    * @description
    *  Applies all configuration and return a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource}
    *  instance with the pending query results.
