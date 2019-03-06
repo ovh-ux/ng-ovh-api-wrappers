@@ -5,64 +5,64 @@
  * # apiv7RequestUpgrader
  *
  * This service's responsibility is to apply the correct querystring or headers
- * to implement the Apiv7Request config.
+ * to implement the ApiRequest config.
  *
- * @see Apiv7Request
+ * @see ApiRequest
  * @private
  */
 import angular from 'angular';
 import merge from 'lodash/merge';
 
 export default /* @ngInject */ function (apiv7AggregationResponseTransformer) {
-  function applyLimit(v7Options, v7Params) {
-    if (v7Options.limit > 0) {
-      v7Params.$limit = v7Options.limit;
+  function applyLimit(apiOptions, v7Params) {
+    if (apiOptions.limit > 0) {
+      v7Params.$limit = apiOptions.limit;
     }
   }
 
-  function applyOffset(v7Options, v7Params) {
-    if (v7Options.offset > 0) {
-      v7Params.$offset = v7Options.offset;
+  function applyOffset(apiOptions, v7Params) {
+    if (apiOptions.offset > 0) {
+      v7Params.$offset = apiOptions.offset;
     }
   }
 
-  function applyExpand(v7Options, v7Params) {
-    if (angular.isDefined(v7Options.expansion)) {
+  function applyExpand(apiOptions, v7Params) {
+    if (angular.isDefined(apiOptions.expansion)) {
       v7Params.$expand = 1;
     }
   }
 
-  function applyFilter(v7Options, action) {
-    if (angular.isArray(v7Options.filters)) {
-      v7Options.filters.forEach((filter) => {
+  function applyFilter(apiOptions, action) {
+    if (angular.isArray(apiOptions.filters)) {
+      apiOptions.filters.forEach((filter) => {
         const filterParamName = [filter.field, filter.comparator].join(':');
         action.params[filterParamName] = angular.isArray(filter.reference) ? filter.reference.join(',') : filter.reference;
       });
     }
   }
 
-  function applySort(v7Options, v7Params) {
-    if (v7Options.sort) {
-      v7Params.$sort = v7Options.sort.field;
-      v7Params.$order = v7Options.sort.order;
+  function applySort(apiOptions, v7Params) {
+    if (apiOptions.sort) {
+      v7Params.$sort = apiOptions.sort.field;
+      v7Params.$order = apiOptions.sort.order;
     }
   }
 
-  function applyBatch(v7Options, v7Params, action) {
-    if (v7Options.batch) {
-      v7Params.$batch = v7Options.batch.separator;
-      delete action.params[v7Options.batch.parameter];
+  function applyBatch(apiOptions, v7Params, action) {
+    if (apiOptions.batch) {
+      v7Params.$batch = apiOptions.batch.separator;
+      delete action.params[apiOptions.batch.parameter];
       action.options.isArray = true;
-      action.options.url = action.options.url.replace(`:${v7Options.batch.parameter}`, v7Options.batch.values.join(v7Options.batch.separator));
+      action.options.url = action.options.url.replace(`:${apiOptions.batch.parameter}`, apiOptions.batch.values.join(apiOptions.batch.separator));
     }
   }
 
-  function applyAggregation(v7Options, v7Params, action) {
-    if (v7Options.aggregation) {
-      let aggregParams = v7Options.aggregation;
+  function applyAggregation(apiOptions, v7Params, action) {
+    if (apiOptions.aggregation) {
+      let aggregParams = apiOptions.aggregation;
 
       // be sure that aggregation option is an Array.
-      // This should be the case if Apiv7Request.aggregate method is used
+      // This should be the case if ApiRequest.aggregate method is used
       if (!angular.isArray(aggregParams)) {
         aggregParams = [aggregParams];
       }
@@ -85,10 +85,10 @@ export default /* @ngInject */ function (apiv7AggregationResponseTransformer) {
     /**
      * @param {Object} params
      * @param {Object} actionOptions
-     * @param {Object} v7Options
+     * @param {Object} apiOptions
      * @returns {{options: (*|Object), params: (*|{})}}
      */
-    buildAction(params, actionOptions, v7Options) {
+    buildAction(params, actionOptions, apiOptions) {
       const action = {
         params: angular.copy(params),
         options: angular.copy(actionOptions),
@@ -100,15 +100,15 @@ export default /* @ngInject */ function (apiv7AggregationResponseTransformer) {
         },
         serviceType: 'apiv7',
       });
-      applyExpand(v7Options, v7Params);
-      applyLimit(v7Options, v7Params);
-      applyOffset(v7Options, v7Params);
-      applyAggregation(v7Options, v7Params, action);
-      applyBatch(v7Options, v7Params, action);
+      applyExpand(apiOptions, v7Params);
+      applyLimit(apiOptions, v7Params);
+      applyOffset(apiOptions, v7Params);
+      applyAggregation(apiOptions, v7Params, action);
+      applyBatch(apiOptions, v7Params, action);
 
       // TODO --> feature mask
-      applySort(v7Options, v7Params);
-      applyFilter(v7Options, action);
+      applySort(apiOptions, v7Params);
+      applyFilter(apiOptions, action);
 
       angular.extend(action.params, v7Params);
       return action;
