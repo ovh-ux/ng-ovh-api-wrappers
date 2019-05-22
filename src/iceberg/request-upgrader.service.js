@@ -91,7 +91,6 @@ export default class IcebergRequestUpgrader {
       ...IcebergRequestUpgrader.buildLimit(apiOptions),
       ...IcebergRequestUpgrader.buildFilters(apiOptions),
       ...IcebergRequestUpgrader.buildSort(apiOptions),
-      ...IcebergRequestUpgrader.buildExpand(apiOptions),
       ...IcebergRequestUpgrader.buildCacheCleaning(cleanCache),
     };
   }
