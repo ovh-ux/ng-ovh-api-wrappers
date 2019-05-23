@@ -12,13 +12,12 @@
  */
 import cloneDeep from 'lodash/cloneDeep';
 import isArray from 'lodash/isArray';
-import isNull from 'lodash/isNull';
 import isString from 'lodash/isString';
 import merge from 'lodash/merge';
 
 export default class IcebergRequestUpgrader {
   static buildExpand({ expansion }) {
-    if (!isNull(expansion)) {
+    if (isString(expansion)) {
       return {
         'X-Pagination-Mode': expansion,
       };
