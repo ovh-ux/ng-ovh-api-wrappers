@@ -102,10 +102,21 @@ export default class IcebergRequestUpgrader {
       options: cloneDeep(actionOptions),
     };
 
-    merge(action.options, {
-      headers: IcebergRequestUpgrader.buildHeaders(apiOptions, cleanCache),
-      serviceType: 'apiv6',
-    });
+    const defaultOptions = {
+      isArray: false,
+      transformResponse: (
+        data,
+        headers,
+        status,
+      ) => ({ data, headers: headers(), status }),
+    };
+
+    merge(action.options,
+      action.options.transformResponse ? {} : defaultOptions,
+      {
+        headers: IcebergRequestUpgrader.buildHeaders(apiOptions, cleanCache),
+        serviceType: 'apiv6',
+      });
     return action;
   }
 }
