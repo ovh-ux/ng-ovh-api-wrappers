@@ -1,3 +1,21 @@
+# [4.0.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v3.0.0...v4.0.0) (2019-07-04)
+
+
+### Features
+
+* **iceberg:** return response headers ([#15](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/15)) ([280ead4](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/280ead4))
+
+
+### BREAKING CHANGES
+
+* **iceberg:** change response type to return headers
+  Before:
+   returned data
+  After:
+   returns an object formatted like `{ data, headers, status }`
+
+
+
 # [3.0.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v2.0.0...v3.0.0) (2019-03-06)
 
 
