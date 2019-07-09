@@ -10,6 +10,7 @@
  * @see ApiRequest
  * @private
  */
+import angular from 'angular';
 import cloneDeep from 'lodash/cloneDeep';
 import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
@@ -108,7 +109,7 @@ export default class IcebergRequestUpgrader {
         data,
         headers,
         status,
-      ) => ({ data, headers: headers(), status }),
+      ) => ({ data: angular.fromJson(data), headers: headers(), status }),
     };
 
     merge(action.options,
