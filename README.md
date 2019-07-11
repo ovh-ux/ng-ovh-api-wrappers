@@ -13,6 +13,7 @@ yarn add @ovh-ux/ng-ovh-api-wrappers
 ## Usage
 
 ```js
+// index.js
 import angular from 'angular';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 
@@ -22,6 +23,113 @@ angular
   ]);
 ```
 
+### Api v7
+
+Use of `apiv7` is now deprecated
+
+### Iceberg 
+
+#### Simple request
+
+```js
+// service.js
+function getElements() {
+  return iceberg('/api/elements')
+    .query()
+    .execute({ ...queryParams }, resetCache)
+    .$promise;
+}
+```
+
+Response is formatted like
+
+<!-- eslint-skip -->
+```js
+{
+  data // data returned by the API
+  headers // response headers returned
+  status // call status
+}
+```
+
+#### Enable aggregation
+
+```js
+// service.js
+function getAggregatedElements() {
+  return iceberg('/api/elements')
+    .query()
+    .expand(aggregationMode)
+    .execute();
+}
+```
+
+`aggregationMode` can be one of those values: 
+* `CachedObjectList-Cursor`
+* `CachedObjectList-Pages`
+
+#### Paginate
+
+```js
+// service.js
+function getPaginatedElements() {
+  return iceberg('/api/elements')
+    .query()
+    .expand('CachedObjectList-Pages')
+    .limit(10) // get only 10 results by page
+    .offset(2) // get results for page 2
+    .execute();
+}
+```
+
+#### Filter
+
+```js
+// service.js
+function getFilteredElements() {
+  return iceberg('/api/elements')
+    .query()
+    .expand('CachedObjectList-Pages')
+    .addFilter('name', 'like', 'iceberg') // get element with name matching iceberg
+    .execute();
+}
+```
+
+```js
+// service.js
+function getFilteredElements() {
+  return iceberg('/api/elements')
+    .query()
+    .expand('CachedObjectList-Pages')
+    .addFilter('name', 'like', ['iceberg', 'awesome']) // get element with name matching iceberg and awesome
+    .execute();
+}
+```
+
+#### Sort
+
+```js
+// service.js
+function getSortedElements() {
+  return iceberg('/api/elements')
+    .query()
+    .expand('CachedObjectList-Pages')
+    .sort('name') // sort elements by ascending names
+    .execute();
+}
+```
+
+
+```js
+// service.js
+function getAggregatedElements() {
+  return iceberg('/api/elements')
+    .query()
+    .expand('CachedObjectList-Pages')
+    .sort('name', 'desc') // sort elements by descending names
+    .execute();
+}
+```
 ## Test
 
 ```sh
