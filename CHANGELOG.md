@@ -1,3 +1,16 @@
+## [4.0.2](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.1...v4.0.2) (2019-07-16)
+
+
+
+## [4.0.1](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.0...v4.0.1) (2019-07-09)
+
+
+### Bug Fixes
+
+* **iceberg:** parse response data ([#21](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/21)) ([34c7bac](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/34c7bac))
+
+
+
 # [4.0.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v3.0.0...v4.0.0) (2019-07-04)
 
 
@@ -36,22 +49,69 @@
 
 
 
-# [2.0.0](https://github.com/ovh-ux/ng-ovh-apiv7/compare/v1.2.8...v2.0.0) (2019-02-19)
+# [2.0.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v1.2.8...v2.0.0) (2019-02-19)
 
 
 ### Bug Fixes
 
-* remove jshint and jscs ([d880ec2](https://github.com/ovh-ux/ng-ovh-apiv7/commit/d880ec2))
+* remove jshint and jscs ([d880ec2](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/d880ec2))
 
 
 ### Code Refactoring
 
-* update stack with component-rollup-config ([fbe0fea](https://github.com/ovh-ux/ng-ovh-apiv7/commit/fbe0fea))
+* update stack with component-rollup-config ([fbe0fea](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/fbe0fea))
 
 
 ### BREAKING CHANGES
 
 * module is now named as `ngOvhApiv7`
+
+
+
+## [1.2.8](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v1.2.5...v1.2.8) (2018-06-14)
+
+
+### Bug Fixes
+
+* fix test task ([1f191ed](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/1f191ed))
+
+
+
+## [1.2.5](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v1.2.4...v1.2.5) (2018-06-14)
+
+
+
+## [1.2.4](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v1.2.3...v1.2.4) (2018-06-14)
+
+
+
+## [1.2.3](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/1.2.3...v1.2.3) (2018-04-18)
+
+
+
+## [1.2.2](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/1.2.2...v1.2.2) (2018-04-18)
+
+
+
+## [1.2.1](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v1.2.0...v1.2.1) (2018-04-17)
+
+
+### Bug Fixes
+
+* **package.json:** fix repository entry in package.json ([e18ed01](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/e18ed01))
+
+
+
+# [1.2.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/1.1.1...v1.2.0) (2018-01-24)
+
+
+### Features
+
+* **aggregation:** add possibility to aggregate calls on multiple params ([bdfdc0f](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/bdfdc0f))
+
+
+
+## 1.1.1 (2017-06-29)
 
 
 
