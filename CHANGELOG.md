@@ -1,3 +1,12 @@
+## [4.0.4](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.3...v4.0.4) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#40](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/40)) ([20ca5d7](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/20ca5d7))
+
+
+
 ## [4.0.3](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.2...v4.0.3) (2019-08-27)
 
 
