@@ -132,6 +132,10 @@ function getAggregatedElements() {
 $ yarn test
 ```
 
+## Related
+
+- [ovh-api-services](https://github.com/ovh-ux/ovh-api-services) - Contains all AngularJS $resource for OVHcloud API
+
 ## Contributing
 
 Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
