@@ -6,7 +6,8 @@
     "angularjs",
     "component",
     "endpoint",
-    "ovh"
+    "ovh",
+    "ovhcloud"
   ],
   "repository": "ovh-ux/ng-ovh-api-wrappers",
   "license": "BSD-3-Clause",
