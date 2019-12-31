@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-api-wrappers
+$ yarn add @ovh-ux/ng-ovh-api-wrappers
 ```
 
 ## Usage
@@ -17,17 +17,14 @@ yarn add @ovh-ux/ng-ovh-api-wrappers
 import angular from 'angular';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 
-angular
-  .module('myApp', [
-    ngOvhApiWrappers,
-  ]);
+angular.module('myApp', [ngOvhApiWrappers]);
 ```
 
 ### Api v7
 
 Use of `apiv7` is now deprecated
 
-### Iceberg 
+### Iceberg
 
 #### Simple request
 
@@ -64,7 +61,7 @@ function getAggregatedElements() {
 }
 ```
 
-`aggregationMode` can be one of those values: 
+`aggregationMode` can be one of those values:
 * `CachedObjectList-Cursor`
 * `CachedObjectList-Pages`
 
@@ -119,7 +116,6 @@ function getSortedElements() {
 }
 ```
 
-
 ```js
 // service.js
 function getAggregatedElements() {
@@ -133,7 +129,7 @@ function getAggregatedElements() {
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
