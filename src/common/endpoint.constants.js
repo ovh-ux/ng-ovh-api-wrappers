@@ -21,7 +21,6 @@ export const API_ENDPOINT_DEFAULT_ACTIONS = {
   },
 };
 
-
 export default {
   API_ENDPOINT_DEFAULT_ACTIONS,
 };
