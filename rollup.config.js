@@ -11,7 +11,11 @@ const outputs = [config.es({
 })];
 
 if (process.env.BUILD === 'production') {
-  outputs.push(config.cjs());
+  outputs.push(config.cjs({
+    output: {
+      exports: 'auto',
+    },
+  }));
   outputs.push(config.umd({
     output: {
       globals: {
