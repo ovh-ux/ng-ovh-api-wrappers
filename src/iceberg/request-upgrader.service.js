@@ -57,7 +57,10 @@ export default class IcebergRequestUpgrader {
   static buildFilters({ filters }) {
     if (isArray(filters)) {
       return {
-        'X-Pagination-Filter': filters.map(({ field, comparator, reference }) => `${field}:${comparator}=${reference.join(',')}`).join('&'),
+        'X-Pagination-Filter':
+          filters
+            .map(({ field, comparator, reference }) => `${field}:${comparator}=${reference.map((ref) => encodeURIComponent(ref)).join(',')}`)
+            .join('&'),
       };
     }
 
