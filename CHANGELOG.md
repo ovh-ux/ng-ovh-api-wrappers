@@ -1,3 +1,12 @@
+## [4.0.9](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.8...v4.0.9) (2021-11-08)
+
+
+### Bug Fixes
+
+* **iceberg:** encodeURIComponent filter values ([#64](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/64)) ([e4138de](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/e4138de1d958b83fb7c6c80caaf3e9291f3c1ae2))
+
+
+
 ## [4.0.8](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.7...v4.0.8) (2020-08-18)
 
 
