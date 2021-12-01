@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-api-wrappers",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "description": "AngularJS component designed to configure ApiEndpoints with the same interface as a $resource yet allow for extended configuration by providing ApiRequests objects that can be modified with chained methods to define the parameters sent to APIv7 or Iceberg.",
   "keywords": [
     "angularjs",

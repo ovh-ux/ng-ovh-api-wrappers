@@ -1,3 +1,12 @@
+## [4.0.10](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.9...v4.0.10) (2021-12-01)
+
+
+### Bug Fixes
+
+* addFilter setFilter parameters ([#65](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/65)) ([1b90636](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/1b906361ba88023e39ed2e78aeda0796ae5c96d0))
+
+
+
 ## [4.0.9](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.8...v4.0.9) (2021-11-08)
 
 
