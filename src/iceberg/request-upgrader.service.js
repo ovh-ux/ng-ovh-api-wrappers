@@ -59,7 +59,7 @@ export default class IcebergRequestUpgrader {
       return {
         'X-Pagination-Filter':
           filters
-            .map(({ field, comparator, reference }) => `${field}:${comparator}=${reference.map((ref) => encodeURIComponent(ref)).join(',')}`)
+            .map(({ field, comparator, reference }) => `${field}:${comparator}=${[].concat(reference).map((ref) => encodeURIComponent(ref)).join(',')}`)
             .join('&'),
       };
     }
