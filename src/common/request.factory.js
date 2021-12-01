@@ -118,7 +118,7 @@ export default /* @ngInject */ function (
    * @returns {ApiRequest} new instance
    * @see APIV7_FILTER_COMPARATOR
    */
-  ApiRequest.prototype.setFilter = function (field, comparator, ...reference) {
+  ApiRequest.prototype.setFilter = function (field, comparator, reference) {
     const clone = this.clone();
     if (!field) {
       delete clone.apiOptions.filters;
@@ -129,7 +129,7 @@ export default /* @ngInject */ function (
       {
         field,
         comparator,
-        reference: angular.isArray(reference) ? reference.join(',') : reference,
+        reference,
       },
     ];
     return clone;
@@ -150,7 +150,7 @@ export default /* @ngInject */ function (
    * @returns {ApiRequest} new instance
    * @see APIV7_FILTER_COMPARATOR
    */
-  ApiRequest.prototype.addFilter = function (field, comparator, ...reference) {
+  ApiRequest.prototype.addFilter = function (field, comparator, reference) {
     const clone = this.clone();
     clone.apiOptions.filters = clone.apiOptions.filters || [];
     clone.apiOptions.filters.push({
