@@ -1,3 +1,7 @@
+## [4.0.11](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.10...v4.0.11) (2022-03-25)
+
+
+
 ## [4.0.10](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.9...v4.0.10) (2021-12-01)
 
 
