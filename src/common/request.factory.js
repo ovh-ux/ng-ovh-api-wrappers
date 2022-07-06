@@ -1,11 +1,9 @@
 import angular from 'angular';
-import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 
 export default /* @ngInject */ function (
   $resource,
   apiIcebergRequestUpgrader,
-  apiv7RequestUpgrader,
 ) {
   /**
    * @ngdoc service
@@ -15,8 +13,6 @@ export default /* @ngInject */ function (
    *
    * This object is normally created by invoking the methods of an
    * {@link ng-ovh-api-wrappers.ApiEndpoint}.
-   * Each ApiRequest represents a request configuration that can be customised by
-   * method chaining to implement various APIv7 options.
    *
    * When executed, an ApiRequest returns a {@link https://docs.angularjs.org/api/ngResource/service/$resource $resource}
    * instance. The ApiRequest object can be executed several times and returns a distinct
@@ -29,20 +25,17 @@ export default /* @ngInject */ function (
    * @param {Object} actionOptions actions configuration
    * @param {Object} [resourceOptions] $resource extra options
    * @param {Object} [apiOptions={}] alternative configuration by parameter
-   * @param {Array} [v7DisabledOperations] disabled operations, to warn developer on usage
    */
   function ApiRequest(defaultUrl, defaultParams, actionOptions, resourceOptions, apiOptions,
-    v7DisabledOperations, serviceType) {
+    serviceType) {
     this.defaultUrl = defaultUrl;
     this.defaultParams = defaultParams;
     this.actionOptions = actionOptions;
     this.options = resourceOptions;
     this.apiOptions = apiOptions || {};
-    this.v7DisabledOperations = v7DisabledOperations || [];
     this.serviceType = serviceType;
 
     this.requestManagers = {
-      apiv7RequestUpgrader,
       apiIcebergRequestUpgrader,
     };
 
@@ -50,18 +43,6 @@ export default /* @ngInject */ function (
       this.actionOptions.url = this.defaultUrl;
     }
     return this;
-  }
-
-  function assertUsageAllowed(operationName, v7DisabledOperations) {
-    if (v7DisabledOperations.indexOf(operationName) !== -1) {
-      throw new Error(`This action does not support the APIv7 '${operationName}' operation`);
-    }
-  }
-
-  function assertV7OptionsAllowed(apiOptions, v7DisabledOperations) {
-    forEach(apiOptions, (value, operationName) => {
-      assertUsageAllowed(operationName, v7DisabledOperations);
-    });
   }
 
   /**
@@ -116,7 +97,6 @@ export default /* @ngInject */ function (
    * @param {String} comparator the operator used to compare the field with reference
    * @param {String|Number|Array} reference value to compare with
    * @returns {ApiRequest} new instance
-   * @see APIV7_FILTER_COMPARATOR
    */
   ApiRequest.prototype.setFilter = function (field, comparator, reference) {
     const clone = this.clone();
@@ -145,10 +125,8 @@ export default /* @ngInject */ function (
    *  Add a filter on a field to compare it with a reference.
    * @param {String} field property to filter on
    * @param {String} comparator the operator used to compare the field with reference.
-   * See {@link APIV7_FILTER_COMPARATOR available comparators}
    * @param {String|Number|Array} reference value to compare with
    * @returns {ApiRequest} new instance
-   * @see APIV7_FILTER_COMPARATOR
    */
   ApiRequest.prototype.addFilter = function (field, comparator, reference) {
     const clone = this.clone();
@@ -247,8 +225,6 @@ export default /* @ngInject */ function (
    * @see ngResource
    */
   ApiRequest.prototype.execute = function (params, cleanCache = false) {
-    // TODO - disable check in prod
-    assertV7OptionsAllowed(this.apiOptions, this.v7DisabledOperations);
     const urlParams = angular.extend({}, params);
     const requestManager = this.requestManagers[`api${this.serviceType}RequestUpgrader`];
     const action = get(
