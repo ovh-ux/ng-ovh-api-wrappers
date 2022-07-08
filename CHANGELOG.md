@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.11...v5.0.0) (2022-07-08)
+
+
+### Code Refactoring
+
+* drop APIv7 support ([#72](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/72)) ([6c97aa8](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/6c97aa8d96091e098f2b3aa01caf69f59a94cfb5))
+
+
+### BREAKING CHANGES
+
+* drop APIv7 support
+
+
+
 ## [4.0.11](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.10...v4.0.11) (2022-03-25)
 
 
