@@ -119,7 +119,7 @@ export default class IcebergRequestUpgrader {
       action.options.transformResponse ? {} : defaultOptions,
       {
         headers: IcebergRequestUpgrader.buildHeaders(apiOptions, cleanCache),
-        serviceType: 'apiv6',
+        serviceType: apiOptions.apiVersion || 'apiv6',
       });
     return action;
   }
