@@ -48,7 +48,7 @@ export default /* @ngInject */ function (
 
   ApiRequest.prototype.setApiVersion = function (apiVersion) {
     const clone = this.clone();
-    clone.apiOptions.apiVersion = angular.isDefined(apiVersion) ? apiVersion : 'apiv6';
+    clone.apiOptions.apiVersion = angular.isString(apiVersion) ? apiVersion : 'apiv6';
     return clone;
   };
 
