@@ -34,6 +34,7 @@ export default /* @ngInject */ function (
     this.options = resourceOptions;
     this.apiOptions = apiOptions || {};
     this.serviceType = serviceType;
+    this.apiVersion = 'apiv6';
 
     this.requestManagers = {
       apiIcebergRequestUpgrader,
@@ -44,6 +45,12 @@ export default /* @ngInject */ function (
     }
     return this;
   }
+
+  ApiRequest.prototype.setApiVersion = function (apiVersion) {
+    const clone = this.clone();
+    clone.apiOptions.apiVersion = angular.isString(apiVersion) ? apiVersion : 'apiv6';
+    return clone;
+  };
 
   /**
    * @ngdoc method
