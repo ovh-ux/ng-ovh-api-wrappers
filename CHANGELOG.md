@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v5.0.0...v5.1.0) (2023-01-30)
+
+
+### Features
+
+* **iceberg:** support of apiv2 ([#77](https://github.com/ovh-ux/ng-ovh-api-wrappers/issues/77)) ([68c0b79](https://github.com/ovh-ux/ng-ovh-api-wrappers/commit/68c0b7930f0f84be6c92103108e467c3c076aebd))
+
+
+
 # [5.0.0](https://github.com/ovh-ux/ng-ovh-api-wrappers/compare/v4.0.11...v5.0.0) (2022-07-08)
 
 
